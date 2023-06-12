@@ -3,12 +3,13 @@ import { galleryItems } from "./gallery-items.js";
 
 console.log(galleryItems);
 
-// 1 Tworzenie i renderowanie znacznika zgodnie z tablicą danych galleryItems i dostarczonym szablonem elementu galerii.
+// Tworzenie i renderowanie znacznika zgodnie z tablicą danych galleryItems i dostarczonym szablonem elementu galerii.
 const galleryElement = document.querySelector("ul.gallery");
 
 const galleryItemsElements = galleryItems
   .map(
     ({ preview, original, description }) => `
+      
         <li class="gallery__item">
             <a class="gallery__link" href="${original}">
                 <img
@@ -19,6 +20,7 @@ const galleryItemsElements = galleryItems
                 />
             </a>
         </li>
+      
     `
   )
   .join("");
@@ -27,7 +29,7 @@ console.log(galleryItemsElements);
 // galleryElement.insertAdjacentHTML("beforeend", galleryItemsElements);
 galleryElement.innerHTML = galleryItemsElements;
 
-// 2 Implementacja oddelegowania do div.gallery i otrzymania url większego obrazu.
+// Implementacja oddelegowania do div.gallery i otrzymania url większego obrazu.
 
 const showLargeImage = (event) => {
   event.preventDefault();
@@ -35,7 +37,7 @@ const showLargeImage = (event) => {
     const largeImage = event.target.dataset.source;
     const imageDescription = event.target.alt;
 
-    // 4 Otworzenie okna modalnego po kliknięciu w element galerii + podłączenie skryptu i stylów
+    // Otworzenie okna modalnego po kliknięciu w element galerii
     const instance = basicLightbox.create(
       `
 		<img width="1280" src="${largeImage}" alt="${imageDescription}">
@@ -43,6 +45,7 @@ const showLargeImage = (event) => {
     );
     instance.show();
 
+    // Zamknięcie okna modalnego z użyciem Escape
     const closeImageWithEscapeKey = (event) => {
       if (event.key === "Escape") {
         instance.close();
