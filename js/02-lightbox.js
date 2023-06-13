@@ -14,7 +14,7 @@ const galleryItemsElements = galleryItems
   )
   .join("");
 
-galleryElement.innerHTML = galleryItemsElements;
+galleryElement.insertAdjacentHTML("beforeend", galleryItemsElements);
 
 const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
